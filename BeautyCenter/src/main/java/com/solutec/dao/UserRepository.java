@@ -1,5 +1,5 @@
 package com.solutec.dao;
 
-public class UserRepository {
+public interface UserRepository {
 
 }
