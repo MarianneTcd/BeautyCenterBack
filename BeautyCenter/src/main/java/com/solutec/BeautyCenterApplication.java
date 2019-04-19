@@ -24,10 +24,10 @@ public class BeautyCenterApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+		/* DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 		salonRepos.save(new Salon("Salon 1", d.parse("14/05/2019"), "salon1@"));
 		salonRepos.save(new Salon("Salon 2", d.parse("25/06/2019"), "jeanmichel@"));
-		salonRepos.save(new Salon("Salon 3", d.parse("04/17/2019"), "marianne@"));
+		salonRepos.save(new Salon("Salon 3", d.parse("04/17/2019"), "marianne@")); */
 
 	}
 
