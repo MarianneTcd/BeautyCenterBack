@@ -1,5 +1,6 @@
 package com.solutec.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,18 @@ public class UserApi {
 	public User getUser(@PathVariable Long id) { 
 		return userRepos.findOne(id); 
 		}
+	
+	@RequestMapping(value="/connexion", method=RequestMethod.GET)
+	public User connexion(@RequestBody User u) {
+		List<User> users = userRepos.findAll();
+		User uConnect = new User(); 		
+		for (User user : users) {
+			if(user.getMail().equals(u.getMail()) && user.getMdp().equals(u.getMdp())) {
+				uConnect = user;
+			}
+		}
+		return uConnect;
+	}
 
 	@RequestMapping(value="/users", method=RequestMethod.POST) 
 	public User saveUser(@RequestBody User s) { 

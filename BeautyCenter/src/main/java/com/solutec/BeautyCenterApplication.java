@@ -39,6 +39,7 @@ public class BeautyCenterApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+
 		DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 		//salonRepos.save(new Salon("Salon des Fougères", d.parse("14/05/2019"), "fougère@salon.paris", "2 Rue des Fougères", "01.02.03.04.05"));
 		//salonRepos.save(new Salon("Salon du PSG", d.parse("25/06/2019"), "psg@salon.paris", "2 Rue du PSG", "01.02.03.04.05"));
@@ -55,7 +56,7 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		Event salonpresta = new Event(salon1, presta1); 
 		salonPrestaRepos.save(salonpresta); 
 		
-		
+	
 	}
   
 }
