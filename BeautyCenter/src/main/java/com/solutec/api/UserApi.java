@@ -42,7 +42,7 @@ public class UserApi {
 		return true; 
 		}
 
-	@RequestMapping(value="/users/{id}", method=RequestMethod.PUT) 
+	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT) 
 	public User modifUser(@PathVariable Long id, @RequestBody User s) { 
 		s.setId(id); 
 		return userRepos.save(s); 

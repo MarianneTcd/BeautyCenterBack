@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class User {
 	@Id @GeneratedValue
 	private Long id;
-	
 	private String nom;
 	private String prenom;
 	private String mail;
