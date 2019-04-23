@@ -34,11 +34,7 @@ public class Salon {
 		this.adresse = adresse;
 		this.telephone = telephone;
 	}
-<<<<<<< HEAD
-=======
-	
 
->>>>>>> branch 'master' of https://github.com/MarianneTcd/BeautyCenterBack
 
 	public Long getId() {
 		return id;
