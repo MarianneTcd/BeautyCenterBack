@@ -50,11 +50,6 @@ public class Salon {
 		this.telephone = telephone; 
 	}
 
-
-
-
-
-
 	public Long getId() {
 		return id;
 	}
