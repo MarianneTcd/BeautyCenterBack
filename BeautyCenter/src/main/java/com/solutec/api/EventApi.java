@@ -33,7 +33,7 @@ public class EventApi {
 		return eventRepos.findOne(id); 
 	}
 	
-	@RequestMapping(value="/events/", method=RequestMethod.POST)
+	@RequestMapping(value="/events", method=RequestMethod.POST)
 	public Event saveEvent(@RequestBody Event e) {
 		return eventRepos.save(e); 
 	}
