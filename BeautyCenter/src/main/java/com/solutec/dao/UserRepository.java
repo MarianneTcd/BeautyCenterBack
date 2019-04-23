@@ -1,5 +1,9 @@
 package com.solutec.dao;
 
-public interface UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.solutec.entities.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }
