@@ -6,4 +6,5 @@ import com.solutec.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+
 }

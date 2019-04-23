@@ -1,12 +1,10 @@
 package com.solutec.entities;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,32 +21,24 @@ public class Salon {
 	private String adresse;
 	private String telephone;
 	
-	@ManyToMany(targetEntity = Prestation.class)
-	private Set prestationSet; 
-
 
 	public Salon() {
 		super();
 	}
 
-	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, Set prestationSet) {
-		super();
-		this.nomSalon = nomSalon;
-		this.dateSalon = dateSalon;
-		this.contact = contact;
-		this.adresse = adresse;
-		this.telephone = telephone;
-		this.prestationSet = prestationSet ; 
-	}
-	
 	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone) {
 		super();
 		this.nomSalon = nomSalon;
 		this.dateSalon = dateSalon;
 		this.contact = contact;
 		this.adresse = adresse;
-		this.telephone = telephone; 
+		this.telephone = telephone;
 	}
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> branch 'master' of https://github.com/MarianneTcd/BeautyCenterBack
 
 	public Long getId() {
 		return id;
@@ -57,19 +47,6 @@ public class Salon {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Set getPrestationSet() {
-		return prestationSet;
-	}
-
-
-
-
-	public void setPrestationSet(Set prestationSet) {
-		this.prestationSet = prestationSet;
-	}
-
-
 
 
 	public String getAdresse() {
