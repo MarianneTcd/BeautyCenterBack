@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Salon {
 	@Id @GeneratedValue
-	private Long idsalon;
+	private Long id;
 	
 	private String nomSalon;
 	
@@ -31,9 +31,6 @@ public class Salon {
 		super();
 	}
 
-
-
-
 	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, Set prestationSet) {
 		super();
 		this.nomSalon = nomSalon;
@@ -43,22 +40,28 @@ public class Salon {
 		this.telephone = telephone;
 		this.prestationSet = prestationSet ; 
 	}
-
-
-
-	public Long getIdsalon() {
-		return idsalon;
+	
+	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone) {
+		super();
+		this.nomSalon = nomSalon;
+		this.dateSalon = dateSalon;
+		this.contact = contact;
+		this.adresse = adresse;
+		this.telephone = telephone; 
 	}
 
 
 
 
-	public void setIdsalon(Long idsalon) {
-		this.idsalon = idsalon;
+
+
+	public Long getId() {
+		return id;
 	}
 
-
-
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Set getPrestationSet() {
 		return prestationSet;
@@ -111,15 +114,6 @@ public class Salon {
 		this.contact = contact;
 	}
 
-
-	public Long getId() {
-		return idsalon;
-	}
-
-
-	public void setId(Long id) {
-		this.idsalon = id;
-	}
 
 
 	public String getNomSalon() {

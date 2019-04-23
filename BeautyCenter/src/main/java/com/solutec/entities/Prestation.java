@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Prestation {
 
 	@Id @GeneratedValue
-	private Long idpresta;
+	private Long id;
 	private String titre;
 	private int duree;
 	private int nbPersonnel;
@@ -20,18 +20,19 @@ public class Prestation {
 
 	public Prestation(Long id, String titre, int duree, int nbPersonnel) {
 		super();
-		this.idpresta = id;
+		this.id = id;
 		this.titre = titre;
 		this.duree = duree;
 		this.nbPersonnel = nbPersonnel;
 	}
 
+
 	public Long getId() {
-		return idpresta;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.idpresta = id;
+		this.id = id;
 	}
 
 	public String getTitre() {
