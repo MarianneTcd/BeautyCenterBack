@@ -18,9 +18,8 @@ public class Prestation {
 		super();
 	}
 
-	public Prestation(Long id, String titre, int duree, int nbPersonnel) {
+	public Prestation(String titre, int duree, int nbPersonnel) {
 		super();
-		this.id = id;
 		this.titre = titre;
 		this.duree = duree;
 		this.nbPersonnel = nbPersonnel;
