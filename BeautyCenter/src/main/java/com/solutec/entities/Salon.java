@@ -11,13 +11,15 @@ import javax.persistence.TemporalType;
 @Entity
 public class Salon {
 	@Id @GeneratedValue
-	private Long id;
+	private Long idsalon;
 	
 	private String nomSalon;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateSalon;
 	private String contact; 
+	private String adresse;
+	private String telephone;
 
 
 	public Salon() {
@@ -27,11 +29,41 @@ public class Salon {
 
 
 
-	public Salon(String nomSalon, Date dateSalon, String contact) {
+	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone) {
 		super();
 		this.nomSalon = nomSalon;
 		this.dateSalon = dateSalon;
 		this.contact = contact;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+
+
+
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+
+
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+
+
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 
@@ -48,12 +80,12 @@ public class Salon {
 
 
 	public Long getId() {
-		return id;
+		return idsalon;
 	}
 
 
 	public void setId(Long id) {
-		this.id = id;
+		this.idsalon = id;
 	}
 
 
