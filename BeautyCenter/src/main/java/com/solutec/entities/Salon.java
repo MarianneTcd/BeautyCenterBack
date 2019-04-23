@@ -1,10 +1,12 @@
 package com.solutec.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +22,9 @@ public class Salon {
 	private String contact; 
 	private String adresse;
 	private String telephone;
+	
+	@ManyToMany(targetEntity = Prestation.class)
+	private Set prestationSet; 
 
 
 	public Salon() {
@@ -29,13 +34,41 @@ public class Salon {
 
 
 
-	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone) {
+	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, Set prestationSet) {
 		super();
 		this.nomSalon = nomSalon;
 		this.dateSalon = dateSalon;
 		this.contact = contact;
 		this.adresse = adresse;
 		this.telephone = telephone;
+		this.prestationSet = prestationSet ; 
+	}
+
+
+
+	public Long getIdsalon() {
+		return idsalon;
+	}
+
+
+
+
+	public void setIdsalon(Long idsalon) {
+		this.idsalon = idsalon;
+	}
+
+
+
+
+	public Set getPrestationSet() {
+		return prestationSet;
+	}
+
+
+
+
+	public void setPrestationSet(Set prestationSet) {
+		this.prestationSet = prestationSet;
 	}
 
 
