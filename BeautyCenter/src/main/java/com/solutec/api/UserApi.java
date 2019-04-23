@@ -32,7 +32,7 @@ public class UserApi {
 		return userRepos.findOne(id); 
 		}
 	
-	@RequestMapping(value="/connexion", method=RequestMethod.GET)
+	@RequestMapping(value="/connexion", method=RequestMethod.POST)
 	public User connexion(@RequestBody User u) {
 		List<User> users = userRepos.findAll();
 		User uConnect = new User(); 		
