@@ -29,16 +29,41 @@ public class EventApi {
 	}
 	
 	
-	/*@RequestMapping(value="/events/{id}", method=RequestMethod.GET)
+	/* TEST requête JPQL
+	 * 
+	 *  
+	 *  @RequestMapping(value="/events/{id}", method=RequestMethod.GET)
 	public Event getEvent(@PathVariable Long id) {
 		return eventRepos.findOne(id); 
-	}*/
-	
-	@RequestMapping(value="/events/3", method=RequestMethod.GET)
-	public List<Event> PrestaEvent() {
-		return eventRepos.findBy(); 
 	}
 	
+	@RequestMapping(value="/events/{id}", method=RequestMethod.GET)
+	public List<Event> Eventbyid(@PathVariable Long id) {
+		return eventRepos.findBy(id); 
+	}
+	
+	@RequestMapping(value="/events/test/{id}", method=RequestMethod.GET)
+	public List<Event> EventByIdPresta(@PathVariable Long id) {
+		return eventRepos.findByIdPresta(id); 
+	}
+	
+	@RequestMapping(value="/events/test1/{id}", method=RequestMethod.GET)
+	public List<Event> EventByIdSalon(@PathVariable Long id) {
+		return eventRepos.findByIdSalon(id); 
+	}
+	
+	@RequestMapping(value="/events/test2", method=RequestMethod.GET)
+	public List<Event> EventNomSalon() {
+		return eventRepos.findNomSalon(); 
+	}*/
+	
+	
+	
+	// Infos d'une ou des prestations en fonction de l'id du salon --> VOIR EventRepository pour la requête
+	@RequestMapping(value="/events/salon/{id}", method=RequestMethod.GET)
+	public List<Event> InfosPrestabyIdSalon(@PathVariable Long id) {
+		return eventRepos.findInfosPrestaByIdSalon(id); 
+	}
 	
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
