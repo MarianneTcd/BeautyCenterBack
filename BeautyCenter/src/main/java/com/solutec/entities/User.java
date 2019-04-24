@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * @author ESIC
+ *
+ */
 @Entity
 public class User {
 	@Id @GeneratedValue
@@ -12,17 +16,19 @@ public class User {
 	private String prenom;
 	private String mail;
 	private String mdp;
+	private Integer access;
 	
 	public User() {
 		super();
 	}
 
-	public User(String nom, String prenom, String mail, String mdp) {
+	public User(String nom, String prenom, String mail, String mdp, Integer access) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
 		this.mdp = mdp;
+		this.access = access;
 	}
 
 	public Long getId() {
@@ -64,6 +70,15 @@ public class User {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+
+	public Integer getAccess() {
+		return access;
+	}
+
+	public void setAccess(Integer access) {
+		this.access = access;
+	}
+	
 	
 	
 }

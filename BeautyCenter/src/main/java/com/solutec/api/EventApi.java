@@ -15,6 +15,7 @@ import com.solutec.dao.EventRepository;
 import com.solutec.entities.Event;
 
 
+
 @RestController
 @CrossOrigin("*")
 public class EventApi {
@@ -28,10 +29,17 @@ public class EventApi {
 	}
 	
 	
-	@RequestMapping(value="/events/{id}", method=RequestMethod.GET)
+	/*@RequestMapping(value="/events/{id}", method=RequestMethod.GET)
 	public Event getEvent(@PathVariable Long id) {
 		return eventRepos.findOne(id); 
+	}*/
+	
+	@RequestMapping(value="/events/3", method=RequestMethod.GET)
+	public List<Event> PrestaEvent() {
+		return eventRepos.findBy(); 
 	}
+	
+	
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
 	public Event saveEvent(@RequestBody Event e) {
@@ -50,5 +58,9 @@ public class EventApi {
 		e.setId(id);
 		return eventRepos.save(e);
 	}
+	
+	
 
+	
+	
 }

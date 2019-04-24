@@ -36,7 +36,6 @@ public class Salon {
 		this.telephone = telephone;
 		this.idManager = idManager;
 	}
-	
 
 
 
