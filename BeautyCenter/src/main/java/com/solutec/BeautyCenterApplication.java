@@ -2,6 +2,10 @@ package com.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.Year;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -56,6 +60,18 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		
 		Event salonpresta = new Event(salon1, presta1); 
 		salonPrestaRepos.save(salonpresta); 
+		
+		
+		    Calendar calendar = Calendar.getInstance();
+		    int lastDate = calendar.getActualMaximum(Calendar.DATE);
+
+		    calendar.set(Calendar.DATE, lastDate);
+		    int lastDay = calendar.get(Calendar.DAY_OF_WEEK);
+
+		    System.out.println("Last Date: " + calendar.getTime());
+
+		    System.out.println("Last Day : " + lastDay);	
+		 
 		
 	
 	}
