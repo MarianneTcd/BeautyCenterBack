@@ -2,7 +2,10 @@ package com.solutec.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.solutec.entities.Event;
@@ -34,6 +37,13 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	
 	@Query("SELECT e.presta FROM Event e WHERE e.salon.id = ?1") 
 	public List<Event> findInfosPrestaByIdSalon2(Long id) ;
+	
+	
+	// Supprimer un Event à partir de l'id salon 	
+	@Modifying @Transactional
+	@Query("DELETE from Event e WHERE e.salon.id = ?1")  
+	void DeleteByIdSalon(Long id) ; 
+	
 	
 	
 	

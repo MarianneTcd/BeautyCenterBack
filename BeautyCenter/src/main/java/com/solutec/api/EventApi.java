@@ -76,9 +76,17 @@ public class EventApi {
 		eventRepos.delete(id);
 		return true;
 	}
-
 	
-	@RequestMapping(value="/events/{id}", method=RequestMethod.PUT)
+	
+	// Supprimer un Event à partir de l'id Salon 
+	@RequestMapping(value="/events/salon/{id}", method=RequestMethod.DELETE)
+	public boolean supEventByIdSalon(@PathVariable Long id) {
+		eventRepos.DeleteByIdSalon(id);
+		return true;
+	}
+
+
+		@RequestMapping(value="/events/{id}", method=RequestMethod.PUT)
 	public Event modifEvent(@PathVariable Long id, @RequestBody Event e) {
 		e.setId(id);
 		return eventRepos.save(e);
