@@ -1,5 +1,7 @@
 package com.solutec.api;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,22 @@ import com.solutec.entities.Event;
 @RestController
 @CrossOrigin("*")
 public class EventApi {
+	
+	
+	@RequestMapping(value="/testdate/{mois}", method=RequestMethod.GET)
+	public List<LocalDate> joursMois(@PathVariable int mois){
+
+		LocalDate date = LocalDate.now();
+		ArrayList<LocalDate> list = new ArrayList();
+		while (date.getMonthValue() == mois) {
+		    date = date.plusDays(1);
+		    list.add(date);
+		}
+
+		return list;
+		  
+		}
+	
 	
 	@Autowired
 	private EventRepository eventRepos ; 
