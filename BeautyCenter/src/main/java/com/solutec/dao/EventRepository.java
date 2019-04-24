@@ -35,5 +35,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	@Query("SELECT e.presta FROM Event e WHERE e.salon.id = ?1") 
 	public List<Event> findInfosPrestaByIdSalon2(Long id) ;
 	
+	
+	
 
 }

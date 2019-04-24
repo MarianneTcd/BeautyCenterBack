@@ -32,6 +32,12 @@ public Salon getSalon(@PathVariable Long id) {
 	return salonRepos.findOne(id); 
 	}
 
+@RequestMapping(value="/salons/manager/{idManager}", method=RequestMethod.GET)
+public List<Salon> ListSalonManager(@PathVariable int idManager) {
+	return salonRepos.findSalonsByIdManager(idManager); 
+}
+
+
 @RequestMapping(value="/salons", method=RequestMethod.POST) 
 public Salon saveSalon(@RequestBody Salon s) { 
 	return salonRepos.save(s); 
