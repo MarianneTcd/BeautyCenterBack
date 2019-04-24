@@ -20,21 +20,24 @@ public class Salon {
 	private String contact; 
 	private String adresse;
 	private String telephone;
+	private int idManager;
 	
 
 	public Salon() {
 		super();
 	}
 
-	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone) {
+	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, int idManager) {
 		super();
 		this.nomSalon = nomSalon;
 		this.dateSalon = dateSalon;
 		this.contact = contact;
 		this.adresse = adresse;
 		this.telephone = telephone;
+		this.idManager = idManager;
 	}
-	
+
+
 
 
 	public Long getId() {
@@ -98,7 +101,14 @@ public class Salon {
 	public Date getDateSalon() {
 		return dateSalon;
 	}
+	
+	public int getIdManager() {
+		return idManager;
+	}
 
+	public void setIdManager(int idManager) {
+		this.idManager = idManager;
+	}
 
 	public void setDateSalon(Date dateSalon) {
 		this.dateSalon = dateSalon;
