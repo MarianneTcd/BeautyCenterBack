@@ -50,7 +50,7 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		Prestation presta1 = new Prestation("test", 30, 5) ;
 		prestaRepos.save(presta1); 
 		
-		Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05"); 
+		Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05",1); 
 		salonRepos.save(salon1); 
 		
 		Event salonpresta = new Event(salon1, presta1); 
