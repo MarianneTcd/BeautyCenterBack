@@ -7,24 +7,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Config {
+public class Config extends Salon {
 
 	@Id @GeneratedValue
 	private Long idConfig;
 	
-	private Long idSalon;
-	private int nbPersonnel;
+	private Salon idSalon;
+	private int nbPersonnelTotal;
 	private Date HStart;
 	private Date HEnd;
 	
 	
-	public Config(Long idSalon, int nbPersonnel, Date hStart, Date hEnd) {
+	public Config(Salon idSalon, int nbPersonnelTotal, Date hStart, Date hEnd) {
 		super();
 		
 		this.idSalon = idSalon;
 		this.HStart = hStart;
 		this.HEnd = hEnd;
-		this.nbPersonnel = nbPersonnel;
+		this.nbPersonnelTotal = nbPersonnelTotal;
 	}
 
 
@@ -39,10 +39,10 @@ public class Config {
 	public void setIdConfig(Long idConfig) {
 		this.idConfig = idConfig;
 	}
-	public Long getIdSalon() {
+	public Salon getIdSalon() {
 		return idSalon;
 	}
-	public void setIdSalon(Long idSalon) {
+	public void setIdSalon(Salon idSalon) {
 		this.idSalon = idSalon;
 	}
 	public Date getHStart() {
@@ -57,13 +57,16 @@ public class Config {
 	public void setHEnd(Date hEnd) {
 		HEnd = hEnd;
 	}
-	
-	public int getNbPersonnel() {
-		return nbPersonnel;
+
+
+	public int getNbPersonnelTotal() {
+		return nbPersonnelTotal;
 	}
 
-	public void setNbPersonnel(int nbPersonnel) {
-		this.nbPersonnel = nbPersonnel;
+
+	public void setNbPersonnelTotal(int nbPersonnelTotal) {
+		this.nbPersonnelTotal = nbPersonnelTotal;
 	}
 	
+
 }
