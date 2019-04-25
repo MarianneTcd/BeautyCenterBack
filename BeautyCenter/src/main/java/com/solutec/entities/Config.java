@@ -13,19 +13,21 @@ public class Config {
 	private Long idConfig;
 	
 	private Long idSalon;
+	private int nbPersonnel;
 	private Date HStart;
 	private Date HEnd;
 	
 	
-	public Config(Long idSalon, Date hStart, Date hEnd) {
+	public Config(Long idSalon, int nbPersonnel, Date hStart, Date hEnd) {
 		super();
 		
 		this.idSalon = idSalon;
-		HStart = hStart;
-		HEnd = hEnd;
+		this.HStart = hStart;
+		this.HEnd = hEnd;
+		this.nbPersonnel = nbPersonnel;
 	}
-	
-	
+
+
 	public Config() {
 		super();
 	}
@@ -56,5 +58,12 @@ public class Config {
 		HEnd = hEnd;
 	}
 	
+	public int getNbPersonnel() {
+		return nbPersonnel;
+	}
+
+	public void setNbPersonnel(int nbPersonnel) {
+		this.nbPersonnel = nbPersonnel;
+	}
 	
 }
