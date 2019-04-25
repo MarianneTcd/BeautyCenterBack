@@ -1,8 +1,11 @@
 package com.solutec.entities;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,16 +17,21 @@ public class Config {
 	private Long idConfig;
 	private Long idSalon; 
 	private int nbPersonnelTotal;
-	private LocalTime HStart;
-	private LocalTime HEnd;
 	
+	@Column
+	   @Convert(converter = ConvertionLocalDateTime.class)
+		private LocalTime hStart;
 	
-	public Config(Long idSalon, int nbPersonnelTotal, LocalTime hStart,LocalTime hEnd) {
+	@Column
+	   @Convert(converter = ConvertionLocalDateTime.class)
+		private LocalTime hEnd;
+	
+	public Config(Long idSalon, int nbPersonnelTotal, LocalTime hStart ,LocalTime hEnd) {
 		super();
 		
 		this.idSalon = idSalon;
-		this.HStart = hStart;
-		this.HEnd = hEnd;
+		this.hStart = hStart;
+		this.hEnd = hEnd;
 		this.nbPersonnelTotal = nbPersonnelTotal;
 	}
 
@@ -48,22 +56,22 @@ public class Config {
 
 
 	public LocalTime getHStart() {
-		return HStart;
+		return hStart;
 	}
 
 
 	public void setHStart(LocalTime hStart) {
-		HStart = hStart;
+		hStart = hStart;
 	}
 
 
 	public LocalTime getHEnd() {
-		return HEnd;
+		return hEnd;
 	}
 
 
 	public void setHEnd(LocalTime hEnd) {
-		HEnd = hEnd;
+		hEnd = hEnd;
 	}
 
 
