@@ -27,7 +27,7 @@ public class Reservations {
 	
 	
 	
-	public Reservations(Long idSalon, Long idUser, Long idPresta, LocalDateTime hStart, int dureePresta) {
+	public Reservations(Long idSalon, Long idUser, Long idPresta, LocalDateTime hstart, int dureePresta) {
 		super();
 		this.idsalon = idSalon;
 		this.iduser = idUser;
