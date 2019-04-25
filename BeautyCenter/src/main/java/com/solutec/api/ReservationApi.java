@@ -38,10 +38,14 @@ public class ReservationApi {
 	public List<LocalDate> joursMois(@PathVariable int mois){
 
 		LocalDate date = LocalDate.now();
+		
 		ArrayList<LocalDate> list = new ArrayList();
+		
 		while (date.getMonthValue() == mois) {
+			
+			list.add(date);
 		    date = date.plusDays(1);
-		    list.add(date);
+		    
 		}
 
 		return list;
@@ -65,12 +69,12 @@ public class ReservationApi {
 
 		}
 	
-	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}", method=RequestMethod.GET)
-	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
+	@RequestMapping(value="/reservations/{idsalon}/{idpresta}/{année}/{mois}/{jour}", method=RequestMethod.GET)
+	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable Long idpresta, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
 	    ArrayList<LocalTime> TimeList = new ArrayList() ;
-	    ArrayList<Reservations> reservations = (ArrayList) resRepos.findReservationsByJour(d2, d3, idsalon);
+	    ArrayList<Reservations> reservations = (ArrayList) resRepos.findReservationsByJour(d2, d3, idsalon, idpresta);
 	       
 	    for (Reservations r : reservations) {
 	        TimeList.add(r.getHstart().toLocalTime());     
