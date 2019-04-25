@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -21,7 +23,7 @@ public class Reservations {
 	private Long idpresta;
 	private int dureepresta;
 	
-	
+	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime hstart;
 	
 	
@@ -100,6 +102,8 @@ public class Reservations {
 	public void setHstart(LocalDateTime hstart) {
 		this.hstart = hstart;
 	}
+
+
 
 
 	
