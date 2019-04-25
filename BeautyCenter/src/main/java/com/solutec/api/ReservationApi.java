@@ -80,3 +80,36 @@ public class ReservationApi {
 		}
 
 }
+
+
+
+/*retireHeures(listehcomplete, listehreservationsjourj) {
+
+ArrayList<LocalTime> listefinale = new ArrayList();
+  
+for (LocalTime i : listehcomplete) { 
+  for (LocalTime j : listehreservationsjourj) {
+    
+    if i < j && i > j.plusMinutes(30){
+    	listefinale.add(i);
+    }}};
+  	
+return listefinale;
+
+}*/
+
+
+/*listeHeures(LocalTime houverture, LocalTime hfermeture){
+  
+LocalTime tps = houverture;  
+
+ArrayList<LocalTime> listtps = new ArrayList();
+  while (tps < hfermeture) {
+    tps = tps.plusMinutes(30);
+    listtps.add(tps);
+}
+  
+return listtps;
+
+}
+*/
