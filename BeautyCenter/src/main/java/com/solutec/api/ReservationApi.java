@@ -93,12 +93,13 @@ public class ReservationApi {
 			  
 			for (LocalTime i : jeanlouis) { 
 			  for (LocalTime j : TimeList) {
+				  
 			    
-			    if (i.isAfter(j) && i.isBefore(j.plusMinutes(30))){
+			   if ((i.isAfter(j)) && (i.isBefore(j.plusMinutes(30))) || (i.equals(j))) {
 			    	jeanlouis.remove(i);
 			    	jeanmichel.add(i);
 			    }}};
-			 return jeanmichel ; 
+			 return jeanlouis ; 
 		
 		}
 	
