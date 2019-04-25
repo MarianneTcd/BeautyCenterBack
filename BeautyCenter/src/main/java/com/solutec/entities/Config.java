@@ -1,5 +1,6 @@
 package com.solutec.entities;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,11 +14,11 @@ public class Config {
 	private Long idConfig;
 	private Long idSalon; 
 	private int nbPersonnelTotal;
-	private Date HStart;
-	private Date HEnd;
+	private LocalTime HStart;
+	private LocalTime HEnd;
 	
 	
-	public Config(Long idSalon, int nbPersonnelTotal, Date hStart, Date hEnd) {
+	public Config(Long idSalon, int nbPersonnelTotal, LocalTime hStart,LocalTime hEnd) {
 		super();
 		
 		this.idSalon = idSalon;
@@ -44,16 +45,24 @@ public class Config {
 	public void setIdSalon(Long idSalon) {
 		this.idSalon = idSalon;
 	}
-	public Date getHStart() {
+
+
+	public LocalTime getHStart() {
 		return HStart;
 	}
-	public void setHStart(Date hStart) {
+
+
+	public void setHStart(LocalTime hStart) {
 		HStart = hStart;
 	}
-	public Date getHEnd() {
+
+
+	public LocalTime getHEnd() {
 		return HEnd;
 	}
-	public void setHEnd(Date hEnd) {
+
+
+	public void setHEnd(LocalTime hEnd) {
 		HEnd = hEnd;
 	}
 

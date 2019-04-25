@@ -1,5 +1,7 @@
 package com.solutec.entities;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,11 +16,11 @@ public class Reservations {
 	private Long idSalon;
 	private Long idUser;
 	private Long idPresta;
-	private Date HStart;
-	private Date dureePresta;
+	private LocalTime HStart;
+	private int dureePresta;
 	
 	
-	public Reservations(Long idSalon, Long idUser, Long idPresta, Date hStart, Date dureePresta) {
+	public Reservations(Long idSalon, Long idUser, Long idPresta, LocalTime hStart, int dureePresta) {
 		super();
 		this.idSalon = idSalon;
 		this.idUser = idUser;
@@ -73,24 +75,27 @@ public class Reservations {
 	}
 
 
-	public Date getHStart() {
+	public LocalTime getHStart() {
 		return HStart;
 	}
 
 
-	public void setHStart(Date hStart) {
+	public void setHStart(LocalTime hStart) {
 		HStart = hStart;
 	}
 
 
-	public Date getDureePresta() {
+	public int getDureePresta() {
 		return dureePresta;
 	}
 
 
-	public void setDureePresta(Date dureePresta) {
+	public void setDureePresta(int dureePresta) {
 		this.dureePresta = dureePresta;
 	}
+
+
+	
 	
 	
 
