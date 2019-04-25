@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,8 +25,9 @@ public class Reservations {
 	private Long idpresta;
 	private int dureepresta;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime hstart;
+	@Column
+	   @Convert(converter = ConvertionLocalDateTime.class)
+		private LocalDateTime hstart;
 	
 	
 	

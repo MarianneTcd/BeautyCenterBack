@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.solutec.entities.Reservations;
 
-public interface ReservationRepository extends JpaRepository<Reservations, Long> {
+public interface ReservationRepository extends JpaRepository<Reservations, Long>  {
 
 	
 	@Query("select r from Reservations r where r.hstart BETWEEN :startDate AND :endDate AND r.idsalon =:idsalon")
