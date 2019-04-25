@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,13 +48,60 @@ public class ReservationApi {
 		  
 		}
 	
-	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}/", method=RequestMethod.GET)
-	public List<Reservations> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
+	
+	public List<LocalTime> listeHeures(LocalTime houverture, LocalTime hfermeture){
+		  
+		LocalTime tps = houverture;  
+
+		ArrayList<LocalTime> listtps = new ArrayList();
+		  while (tps.isBefore(hfermeture)) {
+		    tps = tps.plusMinutes(30);
+		    listtps.add(tps);
+		}
+		  
+		return listtps;
+		
+
+		}
+	
+	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}", method=RequestMethod.GET)
+	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
 		
-		return resRepos.findReservationsByJour(d2, d3, idsalon);
-	}
+		
+		ArrayList<Reservations> michel = new ArrayList();
+		
+		michel.addAll(resRepos.findReservationsByJour(d2, d3, idsalon));
+		ArrayList<LocalTime> TimeList = new ArrayList() ; 
+		
+		for (Reservations i : michel) {
+			LocalDateTime abcd = i.getHstart();
+			LocalTime tempslocal = abcd.toLocalTime();
+			
+			TimeList.add(tempslocal);
+			
+		}
+		
+
+		ArrayList<LocalTime> listefinale = new ArrayList();
+		ArrayList<LocalTime> jeanlouis = new ArrayList();
+		ArrayList<LocalTime> jeanmichel = new ArrayList();
+		
+		jeanlouis.addAll(listeHeures(LocalTime.of(10,00), LocalTime.of(17, 00)));
+		
+			  
+			for (LocalTime i : jeanlouis) { 
+			  for (LocalTime j : TimeList) {
+			    
+			    if (i.isAfter(j) && i.isBefore(j.plusMinutes(30))){
+			    	jeanlouis.remove(i);
+			    	jeanmichel.add(i);
+			    }}};
+			 return jeanmichel ; 
+		
+		}
+	
 	
 	
 	
