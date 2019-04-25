@@ -65,9 +65,9 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		salonPrestaRepos.save(salonpresta); 
 		
 			
-		//reservationRepos.save(new Reservations(Long.parseLong("2") , Long.parseLong("1"), Long.parseLong("1"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
-		//reservationRepos.save(new Reservations(Long.parseLong("1") , Long.parseLong("2"), Long.parseLong("2"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
-		//reservationRepos.save(new Reservations(Long.parseLong("3") , Long.parseLong("1"), Long.parseLong("3"), LocalDateTime.of(2017,12,15,10,00) , 60 )) ;
+		reservationRepos.save(new Reservations(Long.parseLong("2") , Long.parseLong("1"), Long.parseLong("1"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
+		reservationRepos.save(new Reservations(Long.parseLong("1") , Long.parseLong("2"), Long.parseLong("2"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
+		reservationRepos.save(new Reservations(Long.parseLong("3") , Long.parseLong("1"), Long.parseLong("3"), LocalDateTime.of(2017,12,15,10,00) , 60 )) ;
 	}
   
 }

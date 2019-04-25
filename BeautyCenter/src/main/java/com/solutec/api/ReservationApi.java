@@ -54,6 +54,7 @@ public class ReservationApi {
 		LocalTime tps = houverture;  
 
 		ArrayList<LocalTime> listtps = new ArrayList();
+		listtps.add(tps);
 		  while (tps.isBefore(hfermeture)) {
 		    tps = tps.plusMinutes(30);
 		    listtps.add(tps);
@@ -68,9 +69,31 @@ public class ReservationApi {
 	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
-		
-		
-		ArrayList<Reservations> michel = new ArrayList();
+	    ArrayList<LocalTime> TimeList = new ArrayList() ;
+	    ArrayList<Reservations> reservations = (ArrayList) resRepos.findReservationsByJour(d2, d3, idsalon);
+	       
+	    for (Reservations r : reservations) {
+	        TimeList.add(r.getHstart().toLocalTime());     
+	    }  
+	 
+	    ArrayList<LocalTime> listefinale = new ArrayList();
+	 
+	    // Mettre 10 et 17 en paramètre de la fonction ou aller les chercher avec une requête SQL
+	    ArrayList<LocalTime> heures = (ArrayList) listeHeures(LocalTime.of(10,00), LocalTime.of(17, 00));
+	    ArrayList<LocalTime> listefinalee = (ArrayList) listeHeures(LocalTime.of(10,00), LocalTime.of(17, 00));
+	                 
+	    for (LocalTime h : heures) {
+	        for (LocalTime t : TimeList) {  
+	            if (h.isAfter(t) && h.isBefore(t.plusMinutes(30)) || h.equals(t)) {
+	            	System.out.println("bonjour test ZZEIFHZEIFHZEUIPFHZIEPFHZIPFHZIPEHFZEIPFHZIPEFHZEIPFHZEIPFHZEIFHZIEFHZEIPFHZEIPFHZEIPFHZEIPFHZIPEFHZIEFHZIEFHZIPEFHZIPEFHZIPEHFZIPEFHZIPEFHPZIEFHZIPEFHZEIPFHZPEIHFZEIHFZE");
+	                listefinalee.remove(h);
+	            }
+	        }
+	    }
+	   
+	    return listefinalee ;    
+	}
+		/*ArrayList<Reservations> michel = new ArrayList();
 		
 		michel.addAll(resRepos.findReservationsByJour(d2, d3, idsalon));
 		ArrayList<LocalTime> TimeList = new ArrayList() ; 
@@ -101,7 +124,7 @@ public class ReservationApi {
 			    }}};
 			 return jeanlouis ; 
 		
-		}
+		}*/
 	
 	
 	
