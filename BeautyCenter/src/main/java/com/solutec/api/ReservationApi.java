@@ -48,7 +48,7 @@ public class ReservationApi {
 		}
 	
 	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}/", method=RequestMethod.GET)
-	public List<Reservations> ReservationsJour(@PathVariable Long idsalon, int année, int mois, int jour){
+	public List<Reservations> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
 		
