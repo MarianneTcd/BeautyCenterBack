@@ -65,10 +65,14 @@ public class ReservationApi {
 
 		}
 	
-	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}", method=RequestMethod.GET)
-	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
+	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}/{hOuv}/{hFerm}/{duree}", method=RequestMethod.GET)
+	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour, @PathVariable int hOuv, @PathVariable int hFerm,  @PathVariable int duree  ){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
+		
+		LocalTime t1 = LocalTime.of(hOuv, 00); 
+		LocalTime t2 = LocalTime.of(hFerm, 00); 
+		
 	    ArrayList<LocalTime> TimeList = new ArrayList() ;
 	    ArrayList<Reservations> reservations = (ArrayList) resRepos.findReservationsByJour(d2, d3, idsalon);
 	       
@@ -79,12 +83,12 @@ public class ReservationApi {
 	    ArrayList<LocalTime> listefinale = new ArrayList();
 	 
 	    // Mettre 10 et 17 en paramètre de la fonction ou aller les chercher avec une requête SQL
-	    ArrayList<LocalTime> heures = (ArrayList) listeHeures(LocalTime.of(10,00), LocalTime.of(17, 00));
-	    ArrayList<LocalTime> listefinalee = (ArrayList) listeHeures(LocalTime.of(10,00), LocalTime.of(17, 00));
+	    ArrayList<LocalTime> heures = (ArrayList) listeHeures(t1, t2);
+	    ArrayList<LocalTime> listefinalee = (ArrayList) listeHeures(t1,t2);
 	                 
 	    for (LocalTime h : heures) {
 	        for (LocalTime t : TimeList) {  
-	            if (h.isAfter(t) && h.isBefore(t.plusMinutes(30)) || h.equals(t)) {
+	            if (h.isAfter(t) && h.isBefore(t.plusMinutes(duree)) || h.equals(t)) {
 	            	System.out.println("bonjour test ZZEIFHZEIFHZEUIPFHZIEPFHZIPFHZIPEHFZEIPFHZIPEFHZEIPFHZEIPFHZEIFHZIEFHZEIPFHZEIPFHZEIPFHZEIPFHZIPEFHZIEFHZIEFHZIPEFHZIPEFHZIPEHFZIPEFHZIPEFHPZIEFHZIPEFHZEIPFHZPEIHFZEIHFZE");
 	                listefinalee.remove(h);
 	            }
@@ -93,39 +97,7 @@ public class ReservationApi {
 	   
 	    return listefinalee ;    
 	}
-		/*ArrayList<Reservations> michel = new ArrayList();
 		
-		michel.addAll(resRepos.findReservationsByJour(d2, d3, idsalon));
-		ArrayList<LocalTime> TimeList = new ArrayList() ; 
-		
-		for (Reservations i : michel) {
-			LocalDateTime abcd = i.getHstart();
-			LocalTime tempslocal = abcd.toLocalTime();
-			
-			TimeList.add(tempslocal);
-			
-		}
-		
-
-		ArrayList<LocalTime> listefinale = new ArrayList();
-		ArrayList<LocalTime> jeanlouis = new ArrayList();
-		ArrayList<LocalTime> jeanmichel = new ArrayList();
-		
-		jeanlouis.addAll(listeHeures(LocalTime.of(10,00), LocalTime.of(17, 00)));
-		
-			  
-			for (LocalTime i : jeanlouis) { 
-			  for (LocalTime j : TimeList) {
-				  
-			    
-			   if ((i.isAfter(j)) && (i.isBefore(j.plusMinutes(30))) || (i.equals(j))) {
-			    	jeanlouis.remove(i);
-			    	jeanmichel.add(i);
-			    }}};
-			 return jeanlouis ; 
-		
-		}*/
-	
 	
 	
 	
@@ -155,33 +127,6 @@ public class ReservationApi {
 
 
 
-/*retireHeures(listehcomplete, listehreservationsjourj) {
-
-ArrayList<LocalTime> listefinale = new ArrayList();
-  
-for (LocalTime i : listehcomplete) { 
-  for (LocalTime j : listehreservationsjourj) {
-    
-    if i < j && i > j.plusMinutes(30){
-    	listefinale.add(i);
-    }}};
-  	
-return listefinale;
-
-}*/
 
 
-/*listeHeures(LocalTime houverture, LocalTime hfermeture){
-  
-LocalTime tps = houverture;  
 
-ArrayList<LocalTime> listtps = new ArrayList();
-  while (tps < hfermeture) {
-    tps = tps.plusMinutes(30);
-    listtps.add(tps);
-}
-  
-return listtps;
-
-}
-*/
