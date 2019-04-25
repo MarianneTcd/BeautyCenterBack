@@ -45,12 +45,9 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	@Modifying @Transactional
 	@Query("DELETE from Event e WHERE e.salon.id = ?1")  
 	void DeleteByIdSalon(Long id) ; 
-<<<<<<< HEAD
 
-	
-=======
 }
->>>>>>> branch 'master' of https://github.com/MarianneTcd/BeautyCenterBack
+
 
 
 

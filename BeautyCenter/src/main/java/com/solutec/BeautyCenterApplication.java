@@ -2,10 +2,6 @@ package com.solutec;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Month;
-import java.time.Year;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -42,8 +38,6 @@ public class BeautyCenterApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		
-
 
 		DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
 		//salonRepos.save(new Salon("Salon des Fougères", d.parse("14/05/2019"), "fougère@salon.paris", "2 Rue des Fougères", "01.02.03.04.05"));
@@ -55,25 +49,14 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		Prestation presta1 = new Prestation("test", 30, 5) ;
 		prestaRepos.save(presta1); 
 		
-		Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05",1); 
+		Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05", 1); 
 		salonRepos.save(salon1); 
 		
 		Event salonpresta = new Event(salon1, presta1); 
 		salonPrestaRepos.save(salonpresta); 
 		
 		
-		    Calendar calendar = Calendar.getInstance();
-		    int lastDate = calendar.getActualMaximum(Calendar.DATE);
 
-		    calendar.set(Calendar.DATE, lastDate);
-		    int lastDay = calendar.get(Calendar.DAY_OF_WEEK);
-
-		    System.out.println("Last Date: " + calendar.getTime());
-
-		    System.out.println("Last Day : " + lastDay);	
-		 
-		
-	
 	}
   
 }

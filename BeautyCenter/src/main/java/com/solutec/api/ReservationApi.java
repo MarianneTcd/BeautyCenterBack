@@ -1,5 +1,7 @@
 package com.solutec.api;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,22 @@ public class ReservationApi {
 	public List<Reservations> getReservation(){
 		return resRepos.findAll();
 	}
+	
+	
+	//Liste jours restants dans le mois 
+	@RequestMapping(value="/testdate/{mois}", method=RequestMethod.GET)
+	public List<LocalDate> joursMois(@PathVariable int mois){
+
+		LocalDate date = LocalDate.now();
+		ArrayList<LocalDate> list = new ArrayList();
+		while (date.getMonthValue() == mois) {
+		    date = date.plusDays(1);
+		    list.add(date);
+		}
+
+		return list;
+		  
+		}
 	
 	@RequestMapping(value="/reserv/{id}", method=RequestMethod.GET) 
 	public Reservations getReservation(@PathVariable Long id) { 
