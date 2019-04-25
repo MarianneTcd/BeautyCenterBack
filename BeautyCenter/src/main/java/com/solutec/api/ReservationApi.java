@@ -70,8 +70,8 @@ public class ReservationApi {
 		}
 	
 
-	@RequestMapping(value="/reservations/{idsalon}/{idpresta}/{année}/{mois}/{jour}/{hOuv}/{hFerm}/{duree}", method=RequestMethod.GET)
-	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable Long idpresta, @PathVariable int année, @PathVariable int mois, @PathVariable int jour, @PathVariable int hOuv, @PathVariable int hFerm,  @PathVariable int duree  ){
+	@RequestMapping(value="/reservations/{idsalon}/{idpresta}/{année}/{mois}/{jour}/{hOuv}/{hFerm}", method=RequestMethod.GET)
+	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable Long idpresta, @PathVariable int année, @PathVariable int mois, @PathVariable int jour, @PathVariable int hOuv, @PathVariable int hFerm){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
 		
@@ -79,28 +79,32 @@ public class ReservationApi {
 		LocalTime t2 = LocalTime.of(hFerm, 00); 
 		
 	    ArrayList<LocalTime> TimeList = new ArrayList() ;
+	    ArrayList<Integer> dureesPresta = new ArrayList() ;
 	    ArrayList<Reservations> reservations = (ArrayList) resRepos.findReservationsByJour(d2, d3, idsalon, idpresta);
 	       
 	    for (Reservations r : reservations) {
 	        TimeList.add(r.getHstart().toLocalTime());     
+	        dureesPresta.add(r.getDureepresta());
 	    }  
 	 
 	    ArrayList<LocalTime> listefinale = new ArrayList();
 	 
 	    // Mettre 10 et 17 en paramètre de la fonction ou aller les chercher avec une requête SQL
 	    ArrayList<LocalTime> heures = (ArrayList) listeHeures(t1, t2);
-	    ArrayList<LocalTime> listefinalee = (ArrayList) listeHeures(t1,t2);
+	    ArrayList<LocalTime> listefinalee = (ArrayList) listeHeures(t1, t2);
 	                 
 	    for (LocalTime h : heures) {
 	        for (LocalTime t : TimeList) {  
-	            if (h.isAfter(t) && h.isBefore(t.plusMinutes(duree)) || h.equals(t)) {
+	        	int i = TimeList.indexOf(t);
+	            if (h.isAfter(t) && h.isBefore(t.plusMinutes(dureesPresta.get(i))) || h.equals(t)) {
 	            	System.out.println("bonjour test ZZEIFHZEIFHZEUIPFHZIEPFHZIPFHZIPEHFZEIPFHZIPEFHZEIPFHZEIPFHZEIFHZIEFHZEIPFHZEIPFHZEIPFHZEIPFHZIPEFHZIEFHZIEFHZIPEFHZIPEFHZIPEHFZIPEFHZIPEFHPZIEFHZIPEFHZEIPFHZPEIHFZEIHFZE");
 	                listefinalee.remove(h);
+	                
 	            }
 	        }
 	    }
 	   
-	    return listefinalee ;    
+	    return listefinalee;    
 	}
 		
 	
