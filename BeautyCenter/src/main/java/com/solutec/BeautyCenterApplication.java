@@ -1,17 +1,23 @@
 package com.solutec;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.format.datetime.joda.LocalTimeParser;
 
 import com.solutec.dao.PrestationRepository;
+import com.solutec.dao.ReservationRepository;
 import com.solutec.dao.EventRepository;
 import com.solutec.dao.SalonRepository;
 import com.solutec.entities.Prestation;
+import com.solutec.entities.Reservations;
 import com.solutec.entities.Salon;
 import com.solutec.entities.Event;
 
@@ -28,6 +34,9 @@ public class BeautyCenterApplication implements CommandLineRunner {
 	
 	@Autowired
 	private EventRepository salonPrestaRepos; 
+	
+	@Autowired
+	private ReservationRepository reservationRepos; 
 	
 	
 
@@ -55,8 +64,10 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		Event salonpresta = new Event(salon1, presta1); 
 		salonPrestaRepos.save(salonpresta); 
 		
-		
-
+			
+		reservationRepos.save(new Reservations(Long.parseLong("2") , Long.parseLong("1"), Long.parseLong("1"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
+		reservationRepos.save(new Reservations(Long.parseLong("1") , Long.parseLong("2"), Long.parseLong("2"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
+		reservationRepos.save(new Reservations(Long.parseLong("3") , Long.parseLong("1"), Long.parseLong("3"), LocalDateTime.of(2017,12,15,10,00) , 60 )) ;
 	}
   
 }

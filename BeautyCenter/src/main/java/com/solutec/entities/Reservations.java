@@ -1,6 +1,8 @@
 package com.solutec.entities;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -8,25 +10,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
 @Entity
 public class Reservations {
 	@Id @GeneratedValue
 	private Long id;
 	
-	private Long idSalon;
-	private Long idUser;
-	private Long idPresta;
-	private LocalTime HStart;
-	private int dureePresta;
+	private Long idsalon;
+	private Long iduser;
+	private Long idpresta;
+	private int dureepresta;
 	
 	
-	public Reservations(Long idSalon, Long idUser, Long idPresta, LocalTime hStart, int dureePresta) {
+	private LocalDateTime hstart;
+	
+	
+	
+	
+	public Reservations(Long idSalon, Long idUser, Long idPresta, LocalDateTime hStart, int dureePresta) {
 		super();
-		this.idSalon = idSalon;
-		this.idUser = idUser;
-		this.idPresta = idPresta;
-		HStart = hStart;
-		this.dureePresta = dureePresta;
+		this.idsalon = idSalon;
+		this.iduser = idUser;
+		this.idpresta = idPresta;
+		this.hstart = hstart;
+		this.dureepresta = dureePresta;
 	}
 
 
@@ -45,56 +52,57 @@ public class Reservations {
 	}
 
 
-	public Long getIdSalon() {
-		return idSalon;
+	public Long getIdsalon() {
+		return idsalon;
 	}
 
 
-	public void setIdSalon(Long idSalon) {
-		this.idSalon = idSalon;
+	public void setIdsalon(Long idsalon) {
+		this.idsalon = idsalon;
 	}
 
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getIduser() {
+		return iduser;
 	}
 
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setIduser(Long iduser) {
+		this.iduser = iduser;
 	}
 
 
-	public Long getIdPresta() {
-		return idPresta;
+	public Long getIdpresta() {
+		return idpresta;
 	}
 
 
-	public void setIdPresta(Long idPresta) {
-		this.idPresta = idPresta;
+	public void setIdpresta(Long idpresta) {
+		this.idpresta = idpresta;
 	}
 
 
-	public LocalTime getHStart() {
-		return HStart;
+	public int getDureepresta() {
+		return dureepresta;
 	}
 
 
-	public void setHStart(LocalTime hStart) {
-		HStart = hStart;
+	public void setDureepresta(int dureepresta) {
+		this.dureepresta = dureepresta;
 	}
 
 
-	public int getDureePresta() {
-		return dureePresta;
+	public LocalDateTime getHstart() {
+		return hstart;
 	}
 
 
-	public void setDureePresta(int dureePresta) {
-		this.dureePresta = dureePresta;
+	public void setHstart(LocalDateTime hstart) {
+		this.hstart = hstart;
 	}
 
 
+	
 	
 	
 	
