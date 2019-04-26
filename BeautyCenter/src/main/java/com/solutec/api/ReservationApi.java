@@ -32,20 +32,41 @@ public class ReservationApi {
 		return resRepos.findAll();
 	}
 	
+	/*@RequestMapping(value="/reserv/{iduser}", method = RequestMethod.GET)
+	public List<Reservations> getReservation2(@PathVariable Long iduser){
+		return resRepos.findReservationsUser(iduser);
+	}*/
+	
 	
 	//Liste jours restants dans le mois 
 	@RequestMapping(value="/testdate/{mois}", method=RequestMethod.GET)
+	
+	
 	public List<LocalDate> joursMois(@PathVariable int mois){
-
-		LocalDate date = LocalDate.now();
 		
+		LocalDate date = LocalDate.now();
 		ArrayList<LocalDate> list = new ArrayList();
 		
-		while (date.getMonthValue() == mois) {
+		int test = mois - date.getMonthValue();
+		int newmois = date.getMonthValue() + test;
+		
+		if (date.getMonthValue() == mois) {
 			
-			list.add(date);
-		    date = date.plusDays(1);
-		    
+			while (date.getMonthValue() == mois) {
+				list.add(date);
+				date = date.plusDays(1);
+			}
+		
+		} else { 
+			
+			date = date.withMonth(newmois);
+			date = date.withDayOfMonth(1);
+			
+			while(date.getMonthValue() == newmois) {
+				list.add(date);
+				date = date.plusDays(1);
+			}
+			
 		}
 
 		return list;
