@@ -20,7 +20,10 @@ public interface ReservationRepository extends JpaRepository<Reservations, Long>
       public List<Reservations> findReservationsByJour(@Param("startDate") LocalDateTime date1, @Param("endDate") LocalDateTime date2, @Param("idsalon") Long idsalon,  @Param("idpresta") Long idpresta) ;
 
 	
-	@Query("select r from Reservations r where r.iduser =:iduser")
+	@Query("select r from Reservations r WHERE r.iduser =:iduser ")
     public List<Reservations> findReservationsUser(@Param("iduser") Long iduser); 
+	
+	//@Query("select r, p.titre from Reservations r JOIN Prestation p ON r.idpresta = p.id WHERE r.iduser =:iduser ")
+    //public List<Reservations> findReservationsUser(@Param("iduser") Long iduser); 
 	
 }
