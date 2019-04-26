@@ -34,7 +34,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	
 	
 	//trouver les infos de la prestation en fonction de l'id du salon
-	@Query("SELECT e.presta FROM Event e INNER JOIN e.salon s WHERE s.id = ?1")  
+	@Query("SELECT e.presta FROM Event e INNER JOIN e.salon s WHERE s.id = ?1 ORDER BY e.presta.id")  
 	public List<Event> findInfosPrestaByIdSalon(Long id) ;
 	
 	@Query("SELECT e.presta FROM Event e WHERE e.salon.id = ?1") 

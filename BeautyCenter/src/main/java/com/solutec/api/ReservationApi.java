@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,25 +38,75 @@ public class ReservationApi {
 	public List<LocalDate> joursMois(@PathVariable int mois){
 
 		LocalDate date = LocalDate.now();
+		
 		ArrayList<LocalDate> list = new ArrayList();
+		
 		while (date.getMonthValue() == mois) {
+			
+			list.add(date);
 		    date = date.plusDays(1);
-		    list.add(date);
+		    
 		}
 
 		return list;
 		  
 		}
 	
-	@RequestMapping(value="/reservations/{idsalon}/{année}/{mois}/{jour}/", method=RequestMethod.GET)
-	public List<Reservations> ReservationsJour(@PathVariable Long idsalon, @PathVariable int année, @PathVariable int mois, @PathVariable int jour){
+	
+	public List<LocalTime> listeHeures(LocalTime houverture, LocalTime hfermeture){
+		  
+		LocalTime tps = houverture;  
+
+		ArrayList<LocalTime> listtps = new ArrayList();
+		listtps.add(tps);
+		  while (tps.isBefore(hfermeture)) {
+		    tps = tps.plusMinutes(30);
+		    listtps.add(tps);
+		}
+		  
+		return listtps;
+		
+
+		}
+	
+
+	@RequestMapping(value="/reservations/sal{idsalon}/presta{idpresta}/{année}/{mois}/{jour}/{hOuv}/{hFerm}", method=RequestMethod.GET)
+	public List<LocalTime> ReservationsJour(@PathVariable Long idsalon, @PathVariable Long idpresta, @PathVariable int année, @PathVariable int mois, @PathVariable int jour, @PathVariable int hOuv, @PathVariable int hFerm){
 		LocalDateTime d2 = LocalDateTime.of(année,mois,jour,00,00); 
 		LocalDateTime d3 = LocalDateTime.of(année,mois,jour+1,00,00);
 		
-		return resRepos.findReservationsByJour(d2, d3, idsalon);
+		LocalTime t1 = LocalTime.of(hOuv, 00); 
+		LocalTime t2 = LocalTime.of(hFerm, 00); 
+		
+	    ArrayList<LocalTime> TimeList = new ArrayList() ;
+	    ArrayList<Integer> dureesPresta = new ArrayList() ;
+	    ArrayList<Reservations> reservations = (ArrayList) resRepos.findReservationsByJour(d2, d3, idsalon, idpresta);
+	       
+	    for (Reservations r : reservations) {
+	        TimeList.add(r.getHstart().toLocalTime());     
+	        dureesPresta.add(r.getDureepresta());
+	    }  
+	 
+	    ArrayList<LocalTime> listefinale = new ArrayList();
+	 
+	    // Mettre 10 et 17 en paramètre de la fonction ou aller les chercher avec une requête SQL
+	    ArrayList<LocalTime> heures = (ArrayList) listeHeures(t1, t2);
+	    ArrayList<LocalTime> listefinalee = (ArrayList) listeHeures(t1, t2);
+	                 
+	    for (LocalTime h : heures) {
+	        for (LocalTime t : TimeList) {  
+	        	int i = TimeList.indexOf(t);
+	            if (h.isAfter(t) && h.isBefore(t.plusMinutes(dureesPresta.get(i))) || h.equals(t)) {
+	            	System.out.println("bonjour test ZZEIFHZEIFHZEUIPFHZIEPFHZIPFHZIPEHFZEIPFHZIPEFHZEIPFHZEIPFHZEIFHZIEFHZEIPFHZEIPFHZEIPFHZEIPFHZIPEFHZIEFHZIEFHZIPEFHZIPEFHZIPEHFZIPEFHZIPEFHPZIEFHZIPEFHZEIPFHZPEIHFZEIHFZE");
+	                listefinalee.remove(h);
+	                
+	            }
+	        }
+	    }
+	   
+	    return listefinalee;    
 	}
-	
-	
+
 	
 	@RequestMapping(value="/reserv/{id}", method=RequestMethod.GET) 
 	public Reservations getReservation(@PathVariable Long id) { 
@@ -66,7 +117,14 @@ public class ReservationApi {
 	public Reservations saveReservation(@RequestBody Reservations s) { 
 		return resRepos.save(s); 
 		}
+	
+	@RequestMapping(value="/reserv/{idsalon}/{iduser}/{idpresta}/{année}/{mois}/{jour}/{heure}/{minute}/{dureepresta}", method=RequestMethod.POST) 
+	public Reservations saveReservation2(@PathVariable Long idsalon, @PathVariable Long iduser, @PathVariable Long idpresta, @PathVariable int année, @PathVariable int mois, @PathVariable int jour, @PathVariable int heure, @PathVariable int minute, @PathVariable int dureepresta) { 
+		LocalDateTime dt = LocalDateTime.of(année,mois,jour,heure,minute); 
+		return resRepos.save( new Reservations(idsalon, iduser, idpresta, dt , dureepresta)); 
+		}
 
+	
 	@RequestMapping(value="/reserv/{id}", method=RequestMethod.DELETE) 
 	public boolean supReservation(@PathVariable Long id) { 
 		resRepos.delete(id);
@@ -80,3 +138,9 @@ public class ReservationApi {
 		}
 
 }
+
+
+
+
+
+

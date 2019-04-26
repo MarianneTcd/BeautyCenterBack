@@ -14,11 +14,13 @@ import org.springframework.format.datetime.joda.LocalTimeParser;
 
 import com.solutec.dao.PrestationRepository;
 import com.solutec.dao.ReservationRepository;
+import com.solutec.dao.ConfigRepository;
 import com.solutec.dao.EventRepository;
 import com.solutec.dao.SalonRepository;
 import com.solutec.entities.Prestation;
 import com.solutec.entities.Reservations;
 import com.solutec.entities.Salon;
+import com.solutec.entities.Config;
 import com.solutec.entities.Event;
 
 
@@ -38,6 +40,9 @@ public class BeautyCenterApplication implements CommandLineRunner {
 	@Autowired
 	private ReservationRepository reservationRepos; 
 	
+	@Autowired
+	private ConfigRepository configRepos; 
+	
 	
 
 	public static void main(String[] args) {
@@ -55,19 +60,19 @@ public class BeautyCenterApplication implements CommandLineRunner {
 
 		
 		
-		Prestation presta1 = new Prestation("test", 30, 5) ;
-		prestaRepos.save(presta1); 
+		//Prestation presta1 = new Prestation("test", 30, 5) ;
+		//prestaRepos.save(presta1); 
 		
-		Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05", 1); 
-		salonRepos.save(salon1); 
+		//Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05", 1); 
+		//salonRepos.save(salon1); 
 		
-		Event salonpresta = new Event(salon1, presta1); 
-		salonPrestaRepos.save(salonpresta); 
+		//Event salonpresta = new Event(salon1, presta1); 
+		//salonPrestaRepos.save(salonpresta); 
 		
-			
-		reservationRepos.save(new Reservations(Long.parseLong("2") , Long.parseLong("1"), Long.parseLong("1"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
-		reservationRepos.save(new Reservations(Long.parseLong("1") , Long.parseLong("2"), Long.parseLong("2"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
-		reservationRepos.save(new Reservations(Long.parseLong("3") , Long.parseLong("1"), Long.parseLong("3"), LocalDateTime.of(2017,12,15,10,00) , 60 )) ;
+		//configRepos.save(new Config(Long.parseLong("1"), 1, LocalTime.of(15,10,00), LocalTime.of(15,10,00)))	;
+		//reservationRepos.save(new Reservations(Long.parseLong("2") , Long.parseLong("1"), Long.parseLong("1"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
+		//reservationRepos.save(new Reservations(Long.parseLong("1") , Long.parseLong("2"), Long.parseLong("2"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
+		//reservationRepos.save(new Reservations(Long.parseLong("3") , Long.parseLong("1"), Long.parseLong("3"), LocalDateTime.of(2017,12,15,10,00) , 60 )) ;
 	}
   
 }
