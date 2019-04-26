@@ -106,9 +106,7 @@ public class ReservationApi {
 	   
 	    return listefinalee;    
 	}
-		
-	
-	
+
 	
 	@RequestMapping(value="/reserv/{id}", method=RequestMethod.GET) 
 	public Reservations getReservation(@PathVariable Long id) { 
@@ -125,8 +123,7 @@ public class ReservationApi {
 		LocalDateTime dt = LocalDateTime.of(année,mois,jour,heure,minute); 
 		return resRepos.save( new Reservations(idsalon, iduser, idpresta, dt , dureepresta)); 
 		}
-	
-	
+
 	
 	@RequestMapping(value="/reserv/{id}", method=RequestMethod.DELETE) 
 	public boolean supReservation(@PathVariable Long id) { 
