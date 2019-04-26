@@ -60,5 +60,10 @@ public class UserApi {
 		s.setId(id); 
 		return userRepos.save(s); 
 		}
+	
+	@RequestMapping(value="/users/managers", method=RequestMethod.GET)
+	public List<User> getManagers(){
+		return userRepos.getManagers();
+	}
 
 }

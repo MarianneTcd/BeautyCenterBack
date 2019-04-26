@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.apache.naming.factory.SendMailFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +58,7 @@ public class PresqueReservationsApi {
 		Salon s = SalonRepos.findOne(reservation.getIdsalon());
 		Prestation p = PrestaRepos.findOne(reservation.getIdpresta());
 		
+
 		
 		resRepos.save( new Reservations(reservation.getIdsalon(), reservation.getIduser(), reservation.getIdpresta(), dt , reservation.getDureepresta())); 
 		
@@ -94,3 +96,4 @@ public class PresqueReservationsApi {
 	}
 
 }
+
