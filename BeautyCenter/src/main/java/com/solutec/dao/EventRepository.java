@@ -45,6 +45,11 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 	@Modifying @Transactional
 	@Query("DELETE from Event e WHERE e.salon.id = ?1")  
 	void DeleteByIdSalon(Long id) ; 
+	
+	// Supprimer un Event à partir de l'id salon 	
+	@Modifying @Transactional
+	@Query("DELETE from Event e WHERE e.presta.id = ?1")  
+	void DeleteByIdPrestation(Long id) ;
 
 }
 
