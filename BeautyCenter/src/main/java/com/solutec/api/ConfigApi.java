@@ -1,5 +1,7 @@
 package com.solutec.api;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,16 @@ public class ConfigApi {
 		return configRepos.findOne(idSalon); 
 		}
 	
+	@RequestMapping(value="/config/hStart/{idsalon}", method = RequestMethod.GET)
+	public int getHStart(@PathVariable Long idsalon){
+		return configRepos.findHstart(idsalon);
+	}
+	
+	@RequestMapping(value="/config/hEnd/{idsalon}", method = RequestMethod.GET)
+	public int getHEnd(@PathVariable Long idsalon){
+		return configRepos.findHEnd(idsalon);
+	} 
+	
 	@RequestMapping(value="/config", method=RequestMethod.POST) 
 	public Config saveConfig(@RequestBody Config s) { 
 		return configRepos.save(s); 
@@ -43,7 +55,7 @@ public class ConfigApi {
 
 	@RequestMapping(value="/config/{id}", method=RequestMethod.PUT) 
 	public Config modifConfig(@PathVariable Long id, @RequestBody Config s) { 
-		s.setIdConfig(id); 
+		s.setIdconfig(id); 
 		return configRepos.save(s); 
 		}
 

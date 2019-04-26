@@ -1,5 +1,6 @@
 package com.solutec.entities;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
@@ -14,24 +15,19 @@ import javax.persistence.Id;
 public class Config {
 
 	@Id @GeneratedValue
-	private Long idConfig;
-	private Long idSalon; 
+	private Long idconfig;
+	private Long idsalon; 
 	private int nbPersonnelTotal;
 	
-	@Column
-	   @Convert(converter = ConvertionLocalDateTime.class)
-		private LocalTime hStart;
+	private int hstart;
+	private int hend;
 	
-	@Column
-	   @Convert(converter = ConvertionLocalDateTime.class)
-		private LocalTime hEnd;
-	
-	public Config(Long idSalon, int nbPersonnelTotal, LocalTime hStart ,LocalTime hEnd) {
+	public Config(Long idsalon, int nbPersonnelTotal, int hstart ,int hend) {
 		super();
 		
-		this.idSalon = idSalon;
-		this.hStart = hStart;
-		this.hEnd = hEnd;
+		this.idsalon = idsalon;
+		this.hstart = hstart;
+		this.hend = hend;
 		this.nbPersonnelTotal = nbPersonnelTotal;
 	}
 
@@ -39,39 +35,25 @@ public class Config {
 	public Config() {
 		super();
 	}
-	
 
-	public Long getIdConfig() {
-		return idConfig;
-	}
-	public void setIdConfig(Long idConfig) {
-		this.idConfig = idConfig;
-	}
-	public Long getIdSalon() {
-		return idSalon;
-	}
-	public void setIdSalon(Long idSalon) {
-		this.idSalon = idSalon;
+
+	public Long getIdconfig() {
+		return idconfig;
 	}
 
 
-	public LocalTime getHStart() {
-		return hStart;
+	public void setIdconfig(Long idconfig) {
+		this.idconfig = idconfig;
 	}
 
 
-	public void setHStart(LocalTime hStart) {
-		hStart = hStart;
+	public Long getIdsalon() {
+		return idsalon;
 	}
 
 
-	public LocalTime getHEnd() {
-		return hEnd;
-	}
-
-
-	public void setHEnd(LocalTime hEnd) {
-		hEnd = hEnd;
+	public void setIdsalon(Long idsalon) {
+		this.idsalon = idsalon;
 	}
 
 
@@ -83,6 +65,32 @@ public class Config {
 	public void setNbPersonnelTotal(int nbPersonnelTotal) {
 		this.nbPersonnelTotal = nbPersonnelTotal;
 	}
+
+
+	public int getHstart() {
+		return hstart;
+	}
+
+
+	public void setHstart(int hstart) {
+		this.hstart = hstart;
+	}
+
+
+	public int getHend() {
+		return hend;
+	}
+
+
+	public void setHend(int hend) {
+		this.hend = hend;
+	}
+
+
+
+
+	
+
 	
 
 }
