@@ -19,7 +19,7 @@ public class User {
 	private String mdp;
 	private Integer access;
 	@Column(name="photo")
-	private String photo = "https://devinette-drole.fr/wp-content/uploads/2018/07/devinette-drole.jpg";
+	private String photo = "https://s1.ibtimes.com/sites/www.ibtimes.com/files/styles/lg/public/2018/01/10/screen-shot-2018-01-10-5.png";
 	
 	
 	public User() {
