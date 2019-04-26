@@ -63,13 +63,12 @@ public class BeautyCenterApplication implements CommandLineRunner {
 		Prestation presta1 = new Prestation("test", 30, 5) ;
 		prestaRepos.save(presta1); 
 		
-		Salon salon1 = new Salon("testOnetoMany", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05",20, 1); 
+		Salon salon1 = new Salon("Le Salon du Swag", d.parse("04/17/2019"), "testOnetoMany@salon.paris", "2 Rue du Monoprix", "01.02.03.04.05",20, 1); 
 		salonRepos.save(salon1); 
 		
 		Event salonpresta = new Event(salon1, presta1); 
 		salonPrestaRepos.save(salonpresta); 
 		
-		configRepos.save(new Config(Long.parseLong("1"), 9, 17, 12))	;
 		reservationRepos.save(new Reservations(Long.parseLong("2") , Long.parseLong("1"), Long.parseLong("1"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
 		reservationRepos.save(new Reservations(Long.parseLong("1") , Long.parseLong("2"), Long.parseLong("2"), LocalDateTime.of(2017,12,15,10,00), 30)) ; 
 		reservationRepos.save(new Reservations(Long.parseLong("3") , Long.parseLong("1"), Long.parseLong("3"), LocalDateTime.of(2017,12,15,10,00) , 60 )) ;
