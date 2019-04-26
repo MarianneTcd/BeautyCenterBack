@@ -14,7 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,15 +22,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.solutec.dao.MailRepository;
+import com.solutec.dao.PrestationRepository;
+import com.solutec.dao.SalonRepository;
+import com.solutec.dao.UserRepository;
 import com.solutec.entities.Mail;
+import com.solutec.entities.Prestation;
+import com.solutec.entities.Reservations;
+import com.solutec.entities.Salon;
 import com.solutec.entities.User;
 
 @RestController
 @CrossOrigin("*")
 public class MailApi {
 	
-	//@Autowired
-	//private MailRepository mailRepos;
+	@Autowired
+	private MailRepository mailRepos;
+	
+	@Autowired
+	private UserRepository userRepos;
+	
+	@Autowired
+	private SalonRepository salonRepos;
+	
+	@Autowired
+	private PrestationRepository prestaRepos;
 	
 	private void sendMail(String destinataire, String objet, String contenu) {
 		/*final String expediteur = "jp@joelbpro.com";
@@ -192,6 +208,34 @@ public class MailApi {
 		return mail;
 	}
 	
+
+		
+	@RequestMapping(value="/mailreservation/{iduser}/{idsalon}/{idpresta}", method=RequestMethod.POST)
+	public Mail mailReservation(@PathVariable Long iduser, @PathVariable Long idsalon,@PathVariable Long idpresta){
+		User u = userRepos.findOne(iduser);
+		Salon s = salonRepos.findOne(idsalon);
+		Prestation p = prestaRepos.findOne(idpresta);
+		String destinataire = u.getMail();
+		String objet = "BeautyCenter : Confirmation reservation";
+		String Newligne=System.getProperty("line.separator");
+		String contenu = "Bonjour " + u.getPrenom() + " " + u.getNom() + "," 
+		+ Newligne + ""
+		+ Newligne + "votre reservation pour le salon a bien été prise en compte"
+		+ Newligne + ""+ s.getNomSalon()
+		+ Newligne + ""
+		+ Newligne + ""
+		+ Newligne + ""
+		+ Newligne + "\"Prends soin de toi\"" 
+		+ Newligne + "L'équipe BeautyCenter"
+		+ Newligne + ""
+		+ Newligne + emailfooter;
+		
+		Mail mail = new Mail(objet, contenu, destinataire);
+		
+		sendMail(destinataire, objet, contenu);
+		
+		return mail;
+	}
 	
 	String Newligne=System.getProperty("line.separator");
 	
