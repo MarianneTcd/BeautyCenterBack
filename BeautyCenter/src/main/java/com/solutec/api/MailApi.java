@@ -1,5 +1,8 @@
 package com.solutec.api;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.util.List;
 import java.util.Properties;
 
@@ -111,7 +114,7 @@ public class MailApi {
 		}
 	}
 	
-	@RequestMapping(value="/mailconfirmationcreateur", method=RequestMethod.POST)
+	@RequestMapping(value="/mailconfirmationreateur", method=RequestMethod.POST)
 	public Mail mailConfirmationCreateur(@RequestBody Evenement e){
 		String destinataire = e.getCreateur().getMail();
 		String objet = "Validation d'un événement que vous avez créé";
@@ -147,10 +150,10 @@ public class MailApi {
 		+ Newligne + ""
 		+ Newligne + ""
 		+ Newligne + ""
-		+ Newligne + "À bientôt sur http://localhost:4200  !" 
+		+ Newligne + "Retrouve-nous sur http://localhost:4200/listesalons " 
 		+ Newligne + "L'équipe BeautyCenter"
 		+ Newligne + ""
-		+ Newligne + "Ce mail a été généré automatiquement. Pour toute question eventuelle, veuillez consulter notre FAQ ou nous contacter via la section \" Contact\"";
+		+ Newligne + emailfooter;
 		
 		Mail mail = new Mail(objet, contenu, destinataire);
 		
@@ -160,5 +163,41 @@ public class MailApi {
 	}
 	
 	
+	@RequestMapping(value="/mailcreationmanager", method=RequestMethod.POST)
+	public Mail mailCreationManager(@RequestBody User u){
+		String destinataire = u.getMail();
+		String objet = "BeautyCenter : Confirmation de création de compte manager";
+		String Newligne=System.getProperty("line.separator");
+		String contenu = "Bonjour " + u.getPrenom() + " " + u.getNom() + "," 
+		+ Newligne + Newligne + "Bienvenue sur BeautyCenter ! "
+		+ Newligne + "l'administrateur de BeautyCenter vous a créé un compte manager sur BeautyCenter."  
+		+ Newligne + "Vous pourrez ainsi créer des salons, les gérer, associer les prestrations prévues et le personnel."
+		+ Newligne + ""
+		+ Newligne + "Vous trouverez ci-joint les identifiants pour vous connecter en tant que manager."
+		+ Newligne + "mail :"+u.getMail() + " , mot de passe : " + u.getMdp() + " ."
+		+ Newligne + ""
+		+ Newligne + "Une fois connecté nous vous invitons à aller sur votre espace manager, à changer votre mot de passe et à supprimer ce mail."
+		+ Newligne + ""
+		+ Newligne + "Nous vous souhaitons une bonne aventure sur notre application."
+		+ Newligne + "" 
+		+ Newligne + "\"Prends soin de toi\"" 
+		+ Newligne + "L'équipe BeautyCenter"
+		+ Newligne + ""
+		+ Newligne + emailfooter;
+		
+		Mail mail = new Mail(objet, contenu, destinataire);
+		
+		sendMail(destinataire, objet, contenu);
+		
+		return mail;
+	}
+	
+	
+	String Newligne=System.getProperty("line.separator");
+	
+	String emailfooter ="Ce message vous est adressé automatiquement. Nous vous remercions de ne pas répondre, ni d'utiliser cette adresse email."
+	+ Newligne + "Afin de ne pas être victime d'une arnaque sur internet, il est conseillé de regarder l'adresse du site dans la barre de navigation. "
+	+ Newligne + "ATTENTION : Ce message est strictement confidentiel. Si vous n\'êtes pas destinataire du message, merci de le détruire. ";
+
 
 }
