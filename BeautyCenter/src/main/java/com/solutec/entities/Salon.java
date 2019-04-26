@@ -2,6 +2,7 @@ package com.solutec.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,13 +23,15 @@ public class Salon {
 	private String telephone;
 	private int nbPersonnelSalon;
 	private int idManager;
+	@Column(name="photo")
+	private String photo = "http://www.le-salon-coiffeur.com/images/accueil-2.jpg";
 	
 
 	public Salon() {
 		super();
 	}
 
-	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, int nbPersonnelSalon, int idManager) {
+	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, int nbPersonnelSalon, int idManager, String photo) {
 		super();
 		this.nomSalon = nomSalon;
 		this.dateSalon = dateSalon;
@@ -37,6 +40,7 @@ public class Salon {
 		this.telephone = telephone;
 		this.nbPersonnelSalon = nbPersonnelSalon;
 		this.idManager = idManager;
+		this.photo = photo;
 	}
 
 
