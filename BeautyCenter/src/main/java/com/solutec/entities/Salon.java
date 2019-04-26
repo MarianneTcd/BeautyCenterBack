@@ -126,6 +126,14 @@ public class Salon {
 
 	public void setNbPersonnelSalon(int nbPersonnelSalon) {
 		this.nbPersonnelSalon = nbPersonnelSalon;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	} 
 	
 	
