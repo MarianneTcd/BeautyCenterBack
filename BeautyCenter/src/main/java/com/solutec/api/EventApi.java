@@ -93,6 +93,13 @@ public class EventApi {
 		e.setId(id);
 		return eventRepos.save(e);
 	}
+		
+		// Supprimer un Event à partir de l'id Prestation 
+		@RequestMapping(value="/events/presta/{id}", method=RequestMethod.DELETE)
+		public boolean supEventByIdPrestation(@PathVariable Long id) {
+			eventRepos.DeleteByIdPrestation(id);
+			return true;
+		}
 	
 	
 

@@ -118,9 +118,10 @@ public class ReservationApi {
 		return resRepos.save(s); 
 		}
 	
-	@RequestMapping(value="/reserv/{idsalon}/{iduser}/{idpresta}/{année}/{mois}/{jour}/{heure}/{minute}/{dureepresta}", method=RequestMethod.POST) 
-	public Reservations saveReservation2(@PathVariable Long idsalon, @PathVariable Long iduser, @PathVariable Long idpresta, @PathVariable int année, @PathVariable int mois, @PathVariable int jour, @PathVariable int heure, @PathVariable int minute, @PathVariable int dureepresta) { 
-		LocalDateTime dt = LocalDateTime.of(année,mois,jour,heure,minute); 
+	@RequestMapping(value="/reservs", method=RequestMethod.POST) 
+	
+	public Reservations saveReservation2(@RequestBody Long idsalon, @RequestBody Long iduser, @RequestBody Long idpresta, @RequestBody int annee, @RequestBody int mois, @RequestBody int jour, @RequestBody int heure, @RequestBody int minute, @RequestBody int dureepresta) { 
+		LocalDateTime dt = LocalDateTime.of(annee,mois,jour,heure,minute); 
 		return resRepos.save( new Reservations(idsalon, iduser, idpresta, dt , dureepresta)); 
 		}
 

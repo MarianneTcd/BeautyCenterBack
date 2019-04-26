@@ -20,6 +20,7 @@ public class Salon {
 	private String contact; 
 	private String adresse;
 	private String telephone;
+	private int nbPersonnelSalon;
 	private int idManager;
 	
 
@@ -27,13 +28,14 @@ public class Salon {
 		super();
 	}
 
-	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, int idManager) {
+	public Salon(String nomSalon, Date dateSalon, String contact, String adresse, String telephone, int nbPersonnelSalon, int idManager) {
 		super();
 		this.nomSalon = nomSalon;
 		this.dateSalon = dateSalon;
 		this.contact = contact;
 		this.adresse = adresse;
 		this.telephone = telephone;
+		this.nbPersonnelSalon = nbPersonnelSalon;
 		this.idManager = idManager;
 	}
 
@@ -112,6 +114,16 @@ public class Salon {
 
 	public void setDateSalon(Date dateSalon) {
 		this.dateSalon = dateSalon;
+	}
+
+	public int getNbPersonnelSalon() {
+		return nbPersonnelSalon;
+	}
+
+	public void setNbPersonnelSalon(int nbPersonnelSalon) {
+		this.nbPersonnelSalon = nbPersonnelSalon;
 	} 
+	
+	
 	
 }
