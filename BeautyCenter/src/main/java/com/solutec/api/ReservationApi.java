@@ -32,10 +32,10 @@ public class ReservationApi {
 		return resRepos.findAll();
 	}
 	
-	/*@RequestMapping(value="/reserv/{iduser}", method = RequestMethod.GET)
+	@RequestMapping(value="/reserv/user/{iduser}", method = RequestMethod.GET)
 	public List<Reservations> getReservation2(@PathVariable Long iduser){
 		return resRepos.findReservationsUser(iduser);
-	}*/
+	}
 	
 	
 	//Liste jours restants dans le mois 
